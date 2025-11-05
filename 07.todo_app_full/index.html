@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Full React Todo App</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 20px; }
+      h1 { color: #333; }
+      input { padding: 5px; font-size: 16px; }
+      button { margin-left: 5px; padding: 5px 10px; font-size: 16px; }
+      ul { list-style-type: none; padding: 0; }
+      li { margin: 10px 0; display: flex; align-items: center; }
+      li.completed span { text-decoration: line-through; color: gray; }
+      li button { margin-left: 5px; }
+      .filters button { margin-right: 5px; }
+      .edit-input { flex-grow: 1; margin-right: 5px; padding: 5px; font-size: 16px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React + ReactDOM + Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- App scripts -->
+    <script type="text/babel" src="App.js"></script>
+    <script type="text/babel" src="index.js"></script>
+  </body>
+</html>

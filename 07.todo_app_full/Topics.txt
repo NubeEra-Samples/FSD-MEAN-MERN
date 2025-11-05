@@ -1,0 +1,9 @@
+🔹 Features in this version
+----------------------------
+Add todo
+Delete todo
+Mark completed by clicking text
+Edit todo
+Filter todos: All / Completed / Pending
+Persistent storage via localStorage
+Minimal, clean styling

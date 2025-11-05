@@ -1,0 +1,7 @@
+What this Todo App Covers:
+
+State: todos and input
+Event Handling: onChange, onClick
+Dynamic Rendering: todos.map()
+Props / Keys: key={index} in list items
+Updating Arrays in State: filter and spread operator [...]

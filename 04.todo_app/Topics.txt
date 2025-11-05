@@ -1,0 +1,7 @@
+✅ Features
+-------------
+Add a new todo
+Delete a todo
+Mark todo completed by clicking on the text
+Visual styling for completed items
+State fully managed with useState

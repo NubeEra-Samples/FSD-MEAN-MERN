@@ -1,0 +1,6 @@
+✅ Features
+-----------------
+Displays a random cat image from TheCatAPI
+Fetch new cat with a button click
+Shows loading state while fetching
+Clean, minimal styling
