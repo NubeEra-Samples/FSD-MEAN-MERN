@@ -1,0 +1,99 @@
+.todo {
+  background: #fff;
+  width: 420px;
+  margin: 0 auto;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.input-area {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.todo input[type="text"] {
+  padding: 10px;
+  width: 65%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  transition: border 0.3s ease;
+}
+
+.todo input[type="text"]:focus {
+  border-color: #4CAF50;
+}
+
+.todo button {
+  padding: 10px 16px;
+  margin-left: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.todo button:hover {
+  background-color: #45a049;
+}
+
+.todo ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.todo li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.todo li:hover {
+  background: #f0f8f3;
+}
+
+.todo li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.todo li span {
+  flex: 1;
+  cursor: pointer;
+  text-align: left;
+}
+
+.action-buttons button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 5px;
+}
+
+.action-buttons button:first-of-type {
+  background-color: #2196F3;
+}
+
+.action-buttons button:first-of-type:hover {
+  background-color: #1976D2;
+}
+
+.action-buttons button:last-of-type {
+  background-color: #f44336;
+}
+
+.action-buttons button:last-of-type:hover {
+  background-color: #d32f2f;
+}
