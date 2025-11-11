@@ -4,12 +4,12 @@ import './Todo.css';
 function Todo() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // 👈 State for loading spinner
 
-  // 🧩 Fetch tasks using Promises
+  // 🧩 Fetch tasks using Promise (Backend API: http://localhost:5000/api/todos)
   useEffect(() => {
     const fetchTasks = new Promise((resolve, reject) => {
-      fetch('http://localhost:5000/api/todos')
+      fetch('http://localhost:5000/api/todos') // 👈 Change this URL if backend changes
         .then((response) => {
           if (!response.ok) {
             reject('Failed to fetch tasks');
@@ -22,7 +22,7 @@ function Todo() {
 
     fetchTasks
       .then((data) => {
-        setTasks(data.slice(0, 5)); // limit to 5 tasks for demo
+        setTasks(data.slice(0, 5)); // 👈 Change number to control how many tasks show initially
         setLoading(false);
       })
       .catch((error) => {
@@ -31,7 +31,7 @@ function Todo() {
       });
   }, []);
 
-  // 🧩 Add new task
+  // 🧩 Add new task (Client-side only)
   const handleAddTask = () => {
     if (newTask.trim()) {
       setTasks([...tasks, { id: Date.now(), title: newTask, completed: false }]);
@@ -39,7 +39,7 @@ function Todo() {
     }
   };
 
-  // 🧩 Toggle task completion
+  // 🧩 Toggle completion
   const toggleTaskCompletion = (id) => {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, completed: !task.completed } : task
@@ -53,14 +53,21 @@ function Todo() {
     setTasks(updatedTasks);
   };
 
+  // 🌀 Loading Spinner (shown while Promise fetching data)
   if (loading) {
-    return <div className="todo"><h3>Loading tasks...</h3></div>;
+    return (
+      <div className="todo">
+        <div className="spinner"></div>
+        <h3>Loading tasks...</h3>
+      </div>
+    );
   }
 
   return (
     <div className="todo">
-      <h2>Todo List (Using Promises)</h2>
+      <h2>Todo List (Using Promises + Spinner)</h2>
 
+      {/* 👇 Input Section */}
       <div className="todo-input">
         <input
           type="text"
@@ -71,6 +78,7 @@ function Todo() {
         <button onClick={handleAddTask}>Add Task</button>
       </div>
 
+      {/* 👇 Todo List Section */}
       <ul>
         {tasks.map((task) => (
           <li key={task.id} className={task.completed ? 'completed' : ''}>
