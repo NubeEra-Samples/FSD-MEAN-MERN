@@ -6,15 +6,24 @@ import Login from './Login';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <div className="App">
       {!isLoggedIn ? (
         <Login setIsLoggedIn={setIsLoggedIn} />
       ) : (
-        <>
-          <h1>Todo Application</h1>
+        <div className="dashboard">
+          <div className="header">
+            <h1>Todo Application</h1>
+            <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
           <Todo />
-        </>
+        </div>
       )}
     </div>
   );
