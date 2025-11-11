@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React useState vs useEffect Example</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 20px; }
+      button { margin: 5px; padding: 10px 20px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+      const { useState, useEffect } = React;
+
+      function App() {
+        // useState example: manage count state
+        const [count, setCount] = useState(0);
+
+        // useEffect example: run side effect when count changes
+        useEffect(() => {
+          document.title = `Count: ${count}`;
+          console.log('useEffect triggered: count changed to', count);
+        }, [count]); // dependency array: effect runs only when 'count' changes
+
+        return (
+          <div>
+            <h1>useState vs useEffect Demo</h1>
+            <p>Count: {count}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+            <button onClick={() => setCount(count - 1)}>Decrement</button>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+      
+    </script>
+  </body>
+</html>
