@@ -9,15 +9,21 @@ const PORT = 5000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+function fetchTodos() {
+  // Promise-based function
+  return new Promise((resolve, reject) => {
+    axios.get("https://jsonplaceholder.typicode.com/todos")
+      .then(response => resolve(response.data.slice(0, 5)))
+      .catch(error => reject("Error fetching todos"));
+  });
+}
+
+
 // Route to fetch todos from external API
-app.get("/api/todos", async (req, res) => {
-  try {
-    const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
-    res.json(response.data.slice(0, 10)); // send only first 10 todos for demo
-  } catch (error) {
-    console.error("Error fetching todos:", error.message);
-    res.status(500).json({ error: "Failed to fetch todos" });
-  }
+app.get("/api/todos", (req, res) => {
+  fetchTodos()
+    .then(data => res.json(data))
+    .catch(err => res.status(500).json({ error: err }));
 });
 
 // 404 fallback
