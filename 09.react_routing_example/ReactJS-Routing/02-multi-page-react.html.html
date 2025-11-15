@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Multi-Page (Single File)</title>
+
+    <!-- React + ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      nav button {
+        margin-right: 10px;
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+      .page {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // Simple "pages" as components
+      function Home() {
+        return (
+          <div className="page">
+            <h2>🏠 Home Page</h2>
+            <p>Welcome to the Home Page!</p>
+          </div>
+        );
+      }
+
+      function About() {
+        return (
+          <div className="page">
+            <h2>ℹ️ About Page</h2>
+            <p>This is a simple multi-page React demo using one HTML file.</p>
+          </div>
+        );
+      }
+
+      function Contact() {
+        return (
+          <div className="page">
+            <h2>📞 Contact Page</h2>
+            <p>Contact us at: example@example.com</p>
+          </div>
+        );
+      }
+
+      // Simple router using local component state
+      function App() {
+        const [page, setPage] = React.useState("home");
+
+        function renderPage() {
+          if (page === "home") return <Home />;
+          if (page === "about") return <About />;
+          if (page === "contact") return <Contact />;
+          return <Home />;
+        }
+
+        return (
+          <div>
+            <h1>React Multi-Page in One HTML File</h1>
+
+            <nav>
+              <button onClick={() => setPage("home")}>Home</button>
+              <button onClick={() => setPage("about")}>About</button>
+              <button onClick={() => setPage("contact")}>Contact</button>
+            </nav>
+
+            {renderPage()}
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

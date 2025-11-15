@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Routing Example</title>
+    <style>
+      body { font-family: Arial, sans-serif; padding: 20px; }
+      nav a {
+        margin-right: 15px;
+        text-decoration: none;
+        color: blue;
+        font-weight: bold;
+      }
+      nav a.active {
+        color: darkred;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React + ReactDOM + Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- React Router -->
+    <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.js"></script>
+
+    <!-- App scripts -->
+    <script type="text/babel" src="Home.js"></script>
+    <script type="text/babel" src="About.js"></script>
+    <script type="text/babel" src="Contact.js"></script>
+    <script type="text/babel" src="App.js"></script>
+    <script type="text/babel" src="index.js"></script>
+  </body>
+</html>

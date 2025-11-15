@@ -1,0 +1,17 @@
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+.nav { display:flex; justify-content:space-between; align-items:center; background:#333; color:#fff; padding:10px 20px; }
+.nav a { color: #fff; margin-right:10px; text-decoration:none }
+.nav-right { display:flex; gap:10px; align-items:center }
+.container { padding:20px }
+.centered { max-width:420px; margin:60px auto; padding:20px; border:1px solid #ddd; border-radius:6px }
+.form { display:flex; flex-direction:column; gap:8px }
+.form-inline { display:flex; gap:8px; margin-bottom:12px }
+.form-inline input { padding:6px }
+button { padding:6px 10px }
+.list { width:100%; border-collapse:collapse }
+.list th, .list td { border:1px solid #ddd; padding:8px }
+.cards { display:flex; gap:20px }
+.card { padding:16px; border:1px solid #ddd; border-radius:6px; width:200px; text-align:center }
+.big { font-size:28px; font-weight:700 }
+.error { color: red }
+.note { margin-top:10px; font-size:12px; color:#666 }

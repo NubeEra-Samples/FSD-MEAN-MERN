@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Multi-Page with API</title>
+
+    <!-- React + ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      nav button {
+        margin-right: 10px;
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+      .page {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+      .product, .user {
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+      }
+      .product:last-child, .user:last-child { border-bottom: none; }
+      h3 { margin: 0; }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // Pages
+      function Home() {
+        return (
+          <div className="page">
+            <h2>🏠 Home Page</h2>
+            <p>Welcome! Click the buttons above to see Products or Users.</p>
+          </div>
+        );
+      }
+
+      function Products() {
+        const [products, setProducts] = React.useState([]);
+        const [loading, setLoading] = React.useState(true);
+
+        React.useEffect(() => {
+          fetch("https://fakestoreapi.com/products")
+            .then(res => res.json())
+            .then(data => {
+              setProducts(data);
+              setLoading(false);
+            })
+            .catch(err => {
+              console.error(err);
+              setLoading(false);
+            });
+        }, []);
+
+        return (
+          <div className="page">
+            <h2>🛒 Products</h2>
+            {loading ? <p>Loading...</p> : (
+              <div>
+                {products.map(product => (
+                  <div key={product.id} className="product">
+                    <h3>{product.title}</h3>
+                    <p>Price: ${product.price}</p>
+                    <p>Category: {product.category}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      function Users() {
+        const [users, setUsers] = React.useState([]);
+        const [loading, setLoading] = React.useState(true);
+
+        React.useEffect(() => {
+          fetch("https://fakestoreapi.com/users")
+            .then(res => res.json())
+            .then(data => {
+              setUsers(data);
+              setLoading(false);
+            })
+            .catch(err => {
+              console.error(err);
+              setLoading(false);
+            });
+        }, []);
+
+        return (
+          <div className="page">
+            <h2>👤 Users</h2>
+            {loading ? <p>Loading...</p> : (
+              <div>
+                {users.map(user => (
+                  <div key={user.id} className="user">
+                    <p><strong>Name:</strong> {user.name.firstname} {user.name.lastname}</p>
+                    <p><strong>Username:</strong> {user.username}</p>
+                    <p><strong>Email:</strong> {user.email}</p>
+                    <p><strong>Address:</strong> {user.address.number} {user.address.street}, {user.address.city}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      // Simple router
+      function App() {
+        const [page, setPage] = React.useState("home");
+
+        function renderPage() {
+          switch(page) {
+            case "home": return <Home />;
+            case "products": return <Products />;
+            case "users": return <Users />;
+            default: return <Home />;
+          }
+        }
+
+        return (
+          <div>
+            <h1>React Multi-Page API Demo</h1>
+            <nav>
+              <button onClick={() => setPage("home")}>Home</button>
+              <button onClick={() => setPage("products")}>Products</button>
+              <button onClick={() => setPage("users")}>Users</button>
+            </nav>
+            {renderPage()}
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
